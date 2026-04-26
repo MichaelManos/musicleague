@@ -1,0 +1,25 @@
+[build-system]
+requires = ["hatchling >= 1.26"]
+build-backend = "hatchling.build"
+
+[project]
+name = "Music League Data Collector"
+version = "0.0.1"
+dependencies = [
+  "duckdb>=1.5.0",
+  "pandas>=2.20",
+]
+authors = [
+  { name="Michael Manos", email="Michael.A.Manos@gmail.com" },
+]
+description = "Package to read Music League export data into a local database"
+readme = "README.md"
+requires-python = ">=3.9"
+classifiers = [
+    "Programming Language :: Python :: 3",
+    "Operating System :: OS Independent",
+]
+
+[project.urls]
+Homepage = "https://github.com/MichaelManos/musicleague"
+Issues = "https://github.com/MichaelManos/musicleague/issues"
