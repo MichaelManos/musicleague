@@ -219,4 +219,4 @@ __marimo__/
 
 # Package specific
 # Do not upload configuration; specific to each user
-config.py
+config.json

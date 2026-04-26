@@ -35,7 +35,3 @@ def read_dir(folder_path: str) -> dict[str, pd.DataFrame]:
             f"Files missing from {folder_path}: {missing_files}"
         )
     return {file: pd.read_csv(files_to_load[file]) for file in files_to_load}
-
-
-def process_rounds(rounds: pd.DataFrame) -> pd.DataFrame:
-    return rounds
