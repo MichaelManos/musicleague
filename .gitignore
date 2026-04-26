@@ -216,3 +216,7 @@ __marimo__/
 
 # Streamlit
 .streamlit/secrets.toml
+
+# Package specific
+# Do not upload configuration; specific to each user
+config.py
