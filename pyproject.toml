@@ -8,6 +8,7 @@ version = "0.0.1"
 dependencies = [
   "duckdb>=1.5.0",
   "pandas>=2.20",
+  "spotipy>=2.25.0",
 ]
 authors = [
   { name="Michael Manos", email="Michael.A.Manos@gmail.com" },
