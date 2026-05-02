@@ -7,7 +7,8 @@ import pandas as pd
 
 def connect(path: str) -> dd.DuckDBPyConnection:
     """Creates or connects to a database at `path`"""
-    if not os.path.exists(con):
+    create_tables = False
+    if not os.path.exists(path):
         create_tables = True
     con = dd.connect(path)
     if create_tables:
