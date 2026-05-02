@@ -1,10 +1,17 @@
 import musicleague as ml
 
-league_data = ml.read_dir(r"C:\Users\Micha\OneDrive\Documents\2024\Music League")
+leagues = {
+    "Pilot - Grab Bag": r"C:\Users\Micha\OneDrive\Documents\2024\Music League",
+    "2 Tracks 2 Curious": r"C:\Users\Micha\OneDrive\Documents\2025\Music League\2 - 2 Tracks 2 Curious",
+    "A League of Our Own": r"C:\Users\Micha\OneDrive\Documents\2025\Music League\3 - A League of Our Own",
+    "The League of Extraordinary Song Submissions": r"C:\Users\Micha\OneDrive\Documents\2026\Music League\4 - The League of Extraordinary Song Submissions",
+}
+database = ml.connect(":memory:")
+ml.create_all(database)
+for name in leagues:
+    ml.insert_league(name, leagues[name], database)
 
-database = ml.db.connect(":memory:")
+ml.start_ui(database)
 
-ml.db.create_all(database)
 
-database.sql("SELECT * FROM league")
-database.sql("INSERT INTO league (name) VALUES ('league1')")
+# TODO: View, data export

@@ -1,3 +1,9 @@
+"""Module to handle Spotify API connections and data pulls
+
+Note that this module is essentially deprecated. It can be used but is not
+needed for core functionality.
+"""
+
 import datetime
 import json
 import os
