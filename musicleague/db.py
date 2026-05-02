@@ -28,6 +28,29 @@ def create_all(connection: dd.DuckDBPyConnection) -> None:
             connection.sql(sql.read())
 
 
+def export(
+    connection: dd.DuckDBPyConnection, destination: str = "DataFrame"
+) -> None | pd.DataFrame:
+    """Exports database as a single analytical table
+
+    Parameters
+    ----------
+    connection : duckdb.DuckDBPyConnection
+        Connection to database
+    destination : str, default "DataFrame"
+        If 'DataFrame' or 'df' (case insensitive), will return a pandas DataFrame.
+        Otherwise expects a file destination path. If extension is .xls*, will
+        generate an Excel file. Otherwise will generate a CSV file.
+    """
+    df = connection.sql("SELECT * FROM vw_league_data").to_df()
+    if destination.upper() in {"DATAFRAME", "DF"}:
+        return df
+    if destination.split(".")[-1].startswith("xls"):
+        df.to_excel(destination)
+        return
+    df.to_csv(destination)
+
+
 def next_int(
     table: str,
     connection: dd.DuckDBPyConnection,

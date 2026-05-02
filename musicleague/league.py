@@ -48,11 +48,7 @@ def insert_league(
     id = new_record(name, connection)
     league_data = read_dir(folder_path)
     competitor.upsert_bulk(league_data["competitors"], connection)
-    for table in constants.LEAGUE_TABLES:
-        table_data = league_data[  # noqa: F841 - referenced via duckdb string
-            f"{table}s"
-        ].assign(league_id=id)
-        connection.sql(f"INSERT INTO {table} BY NAME SELECT * FROM table_data")
+    insert_league_data(league_data, connection, id)
     return id
 
 
@@ -103,6 +99,10 @@ def read_dir(folder_path: str) -> dict[str, pd.DataFrame]:
 
 
 def insert_league_data(
-    data: dict[str, pd.DataFrame],
+    data: dict[str, pd.DataFrame], connection: dd.DuckDBPyConnection, id: int
 ) -> None:
-    pass
+    for table in constants.LEAGUE_TABLES:
+        table_data = data[  # noqa: F841 - referenced via duckdb string
+            f"{table}s"
+        ].assign(league_id=id)
+        connection.sql(f"INSERT INTO {table} BY NAME SELECT * FROM table_data")
