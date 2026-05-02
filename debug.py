@@ -7,7 +7,6 @@ leagues = {
     "The League of Extraordinary Song Submissions": r"C:\Users\Micha\OneDrive\Documents\2026\Music League\4 - The League of Extraordinary Song Submissions",
 }
 database = ml.connect(":memory:")
-ml.create_all(database)
 for name in leagues:
     ml.insert_league(name, leagues[name], database)
 

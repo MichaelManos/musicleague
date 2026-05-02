@@ -6,7 +6,10 @@ import pandas as pd
 
 
 def connect(path: str) -> dd.DuckDBPyConnection:
-    """Creates or connects to a database at `path`"""
+    """Creates or connects to a database at `path`.
+
+    If the database does not already exist, the necessary music league schema
+    will be created."""
     create_tables = False
     if not os.path.exists(path):
         create_tables = True
